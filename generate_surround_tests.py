@@ -12,9 +12,9 @@ Output: <out>/surr_<codec>_<layout>.mkv  (1080p AV1 video, Matroska)
 Formats ffmpeg cannot encode, so not generated: Dolby Atmos, DTS:X,
 DTS-HD MA, 7.1 E-AC-3, 7.1 TrueHD.
 
-Known issue: ffmpeg's experimental DTS encoder leaks a low-passed copy of the
-right surround into the LFE channel (about -10 dB relative), so the subwoofer
-may rumble during the SURROUND RIGHT step of surr_dts_5.1.mkv.
+DTS is left out on purpose: ffmpeg's experimental DTS encoder leaks a
+low-passed copy of the right surround into the LFE channel, which makes it
+useless as a speaker test.
 """
 
 import argparse
@@ -65,8 +65,6 @@ CODECS = {
         "5.1": ["-c:a", "eac3", "-b:a", "1024k"]}),
     "truehd": ("TrueHD", "Dolby TrueHD", {
         "5.1": ["-c:a", "truehd", "-strict", "-2"]}),
-    "dts": ("DTS", "DTS Core", {
-        "5.1": ["-c:a", "dca", "-strict", "-2", "-b:a", "1509k"]}),
     "aac": ("AAC", "AAC-LC", {
         "5.1": ["-c:a", "aac", "-b:a", "384k"],
         "7.1": ["-c:a", "aac", "-b:a", "512k"]}),
