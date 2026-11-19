@@ -1,6 +1,7 @@
 # generated videos
 avsync_tests/
 pacing_tests/
-*.part.mp4
+surround_tests/
+*.part.*
 
 __pycache__/
