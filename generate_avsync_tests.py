@@ -6,11 +6,11 @@ a black frame for 50 ms while a 1 kHz beep plays for the same 50 ms, both
 starting at exactly the same timestamp. If the player is in sync, flash and
 beep feel simultaneous.
 
-  avsync_<rate>fps.mp4          zero-offset clip at every frame rate
-  avsync_<rate>fps_<+/-ms>.mp4  deliberately offset clips (audio late = +,
-                                audio early = -) so you can calibrate your
-                                eye/ear and see what offset the player or
-                                TV/AVR is adding. Made at OFFSET_RATES only.
+  sync_<rate>fps.mp4          zero-offset clip at every frame rate
+  sync_<rate>fps_<+/-ms>.mp4  deliberately offset clips (audio late = +,
+                              audio early = -) so you can calibrate your
+                              eye/ear and see what offset the player or
+                              TV/AVR is adding. Made at OFFSET_RATES only.
 
 Measuring with a phone: record the TV + speakers in slo-mo (240 fps) and count
 frames between flash and the first audio waveform bump. Or compare against the
@@ -77,7 +77,7 @@ def clear_dir(d: Path) -> None:
 
 def make(out: Path, label: str, rate: str, off_ms: int, dur: int) -> None:
     suffix = f"_{off_ms:+d}ms" if off_ms else ""
-    f = out / f"avsync_{label}fps{suffix}.mp4"
+    f = out / f"sync_{label}fps{suffix}.mp4"
     if f.exists():
         print(f"skip {f}")
         return

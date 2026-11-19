@@ -6,7 +6,7 @@ constant speed (W/4 px per second, so motion is identical across frame rates),
 plus frame number and timecode overlays. Tearing shows as a split in the bar;
 bad pacing shows as uneven stepping / skipped or doubled frame numbers.
 
-Output: <out>/pacing_<rate>fps.mp4  (AV1 + no audio)
+Output: <out>/pace_<rate>fps.mp4  (AV1 + no audio)
 """
 
 import argparse
@@ -66,7 +66,7 @@ def clear_dir(d: Path) -> None:
 
 
 def make(out: Path, label: str, rate: str, dur: int) -> None:
-    f = out / f"pacing_{label}fps.mp4"
+    f = out / f"pace_{label}fps.mp4"
     if f.exists():
         print(f"skip {f}")
         return
